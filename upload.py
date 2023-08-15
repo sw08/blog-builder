@@ -12,5 +12,5 @@ for i in os.listdir('blog-builder/pages'):
         copy_tree('blog-builder/pages/' + i, 'build/'+ i)
 os.chdir('build')
 os.system('git add .')
-os.system(f'git commit -m "Docs: Upload new posts"')
+os.system(f'git commit -m "Docs: Update blog"')
 os.system('git push')

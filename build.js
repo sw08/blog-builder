@@ -9,53 +9,69 @@ md.use(plainText);
 try {fs.rmSync('pages', {recursive: true});}
 catch {}
 fs.mkdirSync('pages');
-fs.mkdirSync('pages/post')
-
+fs.mkdirSync('pages/post');
+for (const category of fs.readdirSync('post')) {
+    fs.mkdirSync(`pages/post/${category}`);
+}
 
 // render post pages
 var post;
-const posts = fs.readdirSync('post').map(x => x.substring(0, x.length - 3));
-for (var i=0; i < posts.length; i++) {
+var categories = {};
+var sortedPosts = {};
+for (const category of fs.readdirSync('post')) {
+    sortedPosts[category] = [];
+    for (const post of fs.readdirSync(`post/${category}`)) {
+        categories[post.substring(0, post.length - 3)] = category;
+        sortedPosts[category].push(post.substring(0, post.length - 3));
+    }
+}
+const posts = Object.keys(categories);
+var category;
+for (var i = 0; i < posts.length; i++) {
     post = posts[i];
-    const content = fs.readFileSync(`post/${post}.md`, 'utf8')
-    const n = i === posts.length - 1 ? " " : posts[i+1];
-    const p = i === 0 ? " " : posts[i-1];
+    category = categories[post]
+    const content = fs.readFileSync(`post/${category}/${post}.md`, 'utf8')
+    const j = sortedPosts[category].indexOf(post);
+    const n = j === sortedPosts[category].length - 1 ? " " : sortedPosts[category][j + 1];
+    const p = j === 0 ? " " : sortedPosts[category][j - 1];
     var next, previous, date;
     if (n !== " ") {
         date = n.slice(0, 6);
         next = {
-            url: `/post/${n}.html`,
-            title: n.slice(13),
+            url: `/post/${category}/${n}.html`,
+            title: n.slice(11),
             date: `20${date.slice(0, 2)}년 ${date.slice(2, 4)}월 ${date.slice(4)}일`
-        }
+        };
     } else {
         next = {
             url: '',
             title: ' ',
             date: ''
-        }
+        };
     }
     if (p !== " ") {
         date = p.slice(0, 6);
         previous = {
-            url: `/post/${p}.html`,
-            title: p.slice(13),
+            url: `/post/${category}/${p}.html`,
+            title: p.slice(11),
             date: `20${date.slice(0, 2)}년 ${date.slice(2, 4)}월 ${date.slice(4)}일`
-        }
+        };
     } else {
         previous = {
             url: '',
             title: ' ',
             date: ''
-        }
+        };
     }
     fs.writeFile(
-        `pages/post/${post}.html`,
+        `pages/post/${category}/${post}.html`,
         pug.renderFile('pugs/post.pug', {
-            title: post, 
+            title: post,
             content: md.render(content), 
             next: next, 
-            previous: previous
+            previous: previous,
+            category: category,
+            date: `${post.slice(0, 2)}/${post.slice(2, 4)}/${post.slice(4, 6)} ${post.slice(6, 8)}:${post.slice(8, 10)}`
         }),
         () => {}
     );
@@ -73,16 +89,15 @@ for (const page of pages) {
 
 // render pages with additional content
 const recentPosts = [];
-var preview;
-var date;
+var preview, date;
 const length = 300;
-for (const post of posts.slice(files.length - 4).reverse()) {
-    md.render(fs.readFileSync(`post/${post}.md`, 'utf8'))
+for (const post of posts.slice(posts.length - 3).reverse()) {
+    md.render(fs.readFileSync(`post/${categories[post]}/${post}.md`, 'utf8'));
     preview = md.plainText.replace('\n', ' ');
     date = post.slice(0, 6);
     recentPosts.push({
-        title: post.slice(13),
-        url: `/post/${post}.html`,
+        title: post.slice(11),
+        url: `/post/${categories[post]}/${post}.html`,
         preview: preview.length > length ? preview.slice(0, length) : preview,
         date: `20${date.slice(0, 2)}년 ${date.slice(2, 4)}월 ${date.slice(4)}일`
     });

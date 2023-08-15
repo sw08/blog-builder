@@ -33,6 +33,12 @@
     h4 {
         font-size: 3vh;
     }
+    h5 {
+        font-size: 2.5vh
+    }
+    h6 {
+        font-size: 2vh
+    }
     .mobile {
         display: none !important;
     }
@@ -63,6 +69,12 @@
     }
     h4 {
         font-size: 2.9vh;
+    }
+    h5 {
+        font-size: 2.55vh
+    }
+    h6 {
+        font-size: 2.2vh
     }
     .desktop {
         display: none !important;

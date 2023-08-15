@@ -3,11 +3,16 @@ extends container.pug
 
 block append head
     link(rel='stylesheet', href='/css/post.css')
-    title=title.slice(13)
-    meta(property='og:title', content=title.slice(13))
+    title=title.slice(11)
+    meta(property='og:title', content=title.slice(11))
 
 block append content
-    h1.L#title!=title.slice(13)
+    #titlebox.middle.vertical
+        .smallspace
+        h5#category 
+            a(href='/posts.html?category=' + category) ← Category: #{category}
+        h1.L#title!=title.slice(11)
+        h6.graytext#date 20#{date}
     #post
         != content
     table#nextandprevious

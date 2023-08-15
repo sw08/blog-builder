@@ -1,0 +1,36 @@
+/* desktop */
+@media (min-aspect-ratio:1) {
+    #header {
+        height: 7.5vh;
+        padding: 1%;
+    }
+    #nav {
+        flex-direction: row;
+    }
+}
+
+/* mobile */
+@media (max-aspect-ratio: 1) {
+    #header {
+        height: 3.75vh;
+        padding: 1%;
+    }
+}
+
+#navgap {
+    flex-grow: 1;
+}
+
+#logo {
+    display: inline-block;
+    height: inherit;
+}
+
+#header {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+.menuBtn {
+    margin: 0 1.5vw;
+}

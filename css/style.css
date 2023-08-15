@@ -1,0 +1,183 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('/assets/NotoSansKR-Regular.otf');
+}
+
+/* desktop */
+@media (min-aspect-ratio:1) {
+    body {
+        font-size: 2vh;
+    }
+    .XXL {
+        font-size: 15vh;
+    }
+    .XL {
+        font-size: 12vh;
+    }
+    .L {
+        font-size: 9vh;
+    }
+    h1 {
+        font-size: 6vh;
+    }
+    h2 {
+        font-size: 5vh;
+    }
+    h3 {
+        font-size: 4vh
+    }
+    h4 {
+        font-size: 3vh;
+    }
+    .mobile {
+        display: none !important;
+    }
+}
+
+/* mobile */
+@media (max-aspect-ratio:1) {
+    body {
+        font-size: 2.2vh;
+    }
+    .XXL {
+        font-size: 11.4vh;
+    }
+    .XL {
+        font-size: 9.3vh;
+    }
+    .L {
+        font-size: 7.1vh;
+    }
+    h1 {
+        font-size: 5vh;
+    }
+    h2 {
+        font-size: 4.3vh;
+    }
+    h3 {
+        font-size: 3.6vh;
+    }
+    h4 {
+        font-size: 2.9vh;
+    }
+    .desktop {
+        display: none !important;
+    }
+}
+
+div.smallspace {
+    height: 5vh;
+}
+div.space {
+    height: 15vh;
+}
+div.bigspace {
+    height: 25vh;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    vertical-align: middle;
+    margin: 0;
+    color: inherit;
+    font-family: 'Noto Sans', sans-serif;
+    text-align: center;
+    position: relative;
+}
+
+p {
+    font-family: inherit;
+}
+
+div {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+div.content {
+    position: relative;
+}
+
+div.middle {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.vertical {
+    flex-direction: column;
+}
+
+div.space {
+    width: 100%;
+    display: block;
+}
+
+
+div.button {
+    border-radius: 1vh;
+    border-width: 0;
+    padding: 2vh 2vw;
+    margin: 1vw;
+    cursor: pointer;
+    color: #ffffff;
+    transition: 0.25s;
+}
+
+div.button:hover {
+    opacity: 0.8;
+}
+
+div.black {
+    background-color: #222222;
+}
+
+div.blue {
+    background-color: #1f45fc;
+}
+
+
+div#bg {
+    background-image: url('/assets/bg.png');
+    background-repeat: repeat;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    display: inline-block;
+    margin: auto !important;
+    color: inherit;
+}
+
+.graytext {
+    color: #999999;
+}
+
+.bluetext {
+    color: #1f45fc;
+}
+
+.whitetext {
+    color: #FFFFFF
+}

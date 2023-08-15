@@ -1,0 +1,44 @@
+/* desktop */
+@media (min-aspect-ratio:1) {
+    #intro, div#devprofile {
+        width: 60vw;
+    }
+    #avatar {
+        width: 20vw;
+    }
+    img#github {
+        height: 5vh;
+    }
+    #stats {
+        width: 25vw;
+    }
+    #ability {
+        width: 35vw;
+    }
+}
+
+/* mobile */
+@media (max-aspect-ratio: 1) {
+    #intro, div#devprofile {
+        width: 100vw;
+        flex-direction: column;
+    }
+    #avatar {
+        width: 80vw;
+    }
+    img#github {
+        height: 4.3vh;
+    }
+}
+img#github {
+    margin: 1vw;
+}
+
+img.stat, img.badge {
+    margin: 2.5vh 0.5vw;
+}
+
+ul#description {
+    word-break: keep-all;
+    text-align: left;
+}

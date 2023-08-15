@@ -1,0 +1,33 @@
+extends container.pug
+
+
+block append head
+    link(rel='stylesheet', href='/css/post.css')
+    title=title.slice(13)
+    meta(property='og:title', content=title.slice(13))
+
+block append content
+    h1.L#title!=title.slice(13)
+    #post
+        != content
+    table#nextandprevious
+        tr
+            td.description
+                h4 이전글
+            td.title
+                a(href=previous.url)
+                    h4(style='margin-left:0 !important')=previous.title 
+            td.date
+                h4(style='margin-right:0 !important')=previous.date
+        tr#middle
+            td
+                div#line
+        tr
+            td.description
+                h4 다음글
+            td.title
+                a(href=next.url)
+                    h4(style='margin-left:0 !important')=next.title 
+            td.date
+                h4(style='margin-right:0 !important')=next.date
+    

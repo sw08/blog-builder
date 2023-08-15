@@ -1,0 +1,45 @@
+extends container.pug
+
+block append head
+    link(rel='stylesheet', href='/css/index.css')
+    title Main | yswysw
+    meta(property='og:title', content="Main | yswysw")
+
+block append content
+    .middle.vertical#intro
+        h1.XXL Hello! 👋
+        .smallspace
+        h2 안녕하세요, 학생 개발자 #[span.bluetext yswysw]입니다!
+        br
+        h3.graytext 여기는 제 포트폴리오와 블로그를 겸하는 곳이에요.
+        .smallspace
+        .smallspace
+        .middle
+            a(href='https://github.com/sw08')
+                .button.black.middle
+                    img(src='/assets/github.svg' style='height: 1.5em;margin-right: 0.75em;')
+                    h4 View Github
+            a(href='/about.html')
+                .button.blue.middle
+                    img(src='/assets/about.svg' style='height: 1.5em;margin-right: 0.75em;')
+                    h4 More About
+    .bigspace
+    .middle#blog
+        div#blogintro
+            img#bloglogo(src='/assets/blogProfile.png')
+            h3 프로그래밍 등 제 취미를 주제로 운영하는 블로그입니다.
+            h4.graytext 옆에는 최근에 올라온 3개의 포스트입니다.
+        .smallspace.mobile
+        .middle.vertical
+            each post in posts
+                a(href=post.url)
+                    div.preview
+                        h4.posttitle(style='margin-left: 0 !important')=post.title
+                        p(style='text-align: right;margin: 0')=post.date
+                        p.graytext.postPreview=post.preview
+    .bigspace
+    .middle.vertical#profile
+        img#avatar(src='/assets/profile.png')
+        .smallspace
+        h3 제 소개 혹은 관련 정보는 #[a(href='/about.html').bluetext 여기]에서 보실 수 있습니다.
+        h4 제게 연락하시려는 분은 #[span.graytext yswysw0518@gmail.com]으로 메일 남겨주세요!

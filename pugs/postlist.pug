@@ -1,0 +1,42 @@
+extends container.pug
+
+
+block append head
+    link(rel='stylesheet', href='/css/posts.css')
+    title='Posts | yswysw'
+    meta(property='og:title', content='Posts | yswysw')
+
+block append content
+    .smallspace
+    .middle(style='justify-content: space-between;margin-bottom: 1vh')
+        a(href='/category.html').desktop
+            h4 ≡ 카테고리로 보기
+        a(href='/search.html')
+            h4 🔍︎ 검색
+    table#posts
+        unless posts.length == 0
+            each post in posts
+                tr.post
+                    td.category
+                        a(href=categories[post.category])
+                            h5=post.category
+                    td.title.middle
+                        a(href=post.url)
+                            h4=post.title
+                    td.date.desktop
+                        h5=post.date
+        else
+            tr
+                .smallspace
+                h4.graytext 작성된 포스트가 없습니다.
+
+    .smallspace
+    div#pages.middle
+        for page in before
+            a.number(href=page.url)
+                h5=page.number
+        a.number(href=now.url)
+            h5(style='text-decoration: underline !important')=now.number
+        for page in after
+            a.number(href=page.url)
+                h5=page.number

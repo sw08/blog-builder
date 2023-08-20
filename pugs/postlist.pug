@@ -8,28 +8,35 @@ block append head
 
 block append content
     .smallspace
-    .middle(style='justify-content: space-between;margin-bottom: 1vh')
-        a(href='/category.html').desktop
-            h4 ≡ 카테고리로 보기
+    .middle(style='justify-content: flex-end;margin-bottom: 1vh')
         a(href='/search.html')
             h4 🔍︎ 검색
-    table#posts
-        unless posts.length == 0
-            each post in posts
-                tr.post
-                    td.category
-                        a(href=categories[post.category])
-                            h5=post.category
-                    td.title.middle
-                        a(href=post.url)
-                            h4=post.title
-                    td.date.desktop
-                        h5=post.date
-        else
-            tr
-                .smallspace
-                h4.graytext 작성된 포스트가 없습니다.
-
+    .middle(style='align-items: flex-start')#lists
+        .middle.vertical.translucentBg#categories
+            h4
+                ul(style='margin:auto')
+                    a(href=now.url)
+                        li(style='text-decoration: underline !important') 전체글 보기(#{allposts})
+                    unless categorylist.length == 0
+                        each category in categorylist
+                            a(href=category.url)
+                                li=category.name + `(${category.posts})`
+        table#posts
+            unless posts.length == 0
+                each post in posts
+                    tr.post
+                        td.category
+                            a(href=categories[post.category])
+                                h5=post.category
+                        td.title.middle
+                            a(href=post.url)
+                                h4=post.title
+                        td.date.desktop
+                            h5=post.date
+            else
+                tr
+                    .smallspace
+                    h4.graytext 작성된 포스트가 없습니다.
     .smallspace
     div#pages.middle
         for page in before

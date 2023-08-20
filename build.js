@@ -83,7 +83,7 @@ for (var i = 0; i < posts.length; i++) {
 
 // render pages without additional content
 const files = fs.readdirSync('pugs').map(x => x.substring(0, x.length - 4)).sort();
-const exceptions = ['header', 'container', 'post', 'index', 'postlist'];
+const exceptions = ['header', 'container', 'post', 'index', 'postlist', 'categorylist'];
 const pages = files.filter(x => !exceptions.includes(x));
 for (const page of pages) {
     fs.writeFileSync(`pages/${page}.html`, pug.renderFile('./pugs/' + page + '.pug'));
@@ -120,8 +120,17 @@ var categoryLinks = {};
 for (const c of Object.keys(sortedPosts)) {
     categoryLinks[c] = `category/${c}`;
 }
+var categorylist = [];
+var allposts = 0;
+for (const category of Object.keys(categoryLinks)) {
+    categorylist.push({
+        name: category,
+        url: categoryLinks[category] + '.html',
+        posts: sortedPosts[category].length
+    });
+    allposts += categorylist.at(-1).posts
+}
 const pagelength = parseInt(posts.length / 15) + Boolean(posts.length % 15);
-console.log(pagelength)
 for (var i = 0; i < pagelength; i++) {
     splittedPosts = [];
     for (var j = 0; j < 15; j++) {
@@ -155,9 +164,9 @@ for (var i = 0; i < pagelength; i++) {
             url: `/posts/${j}.html`
         });
     }
-    fs.writeFileSync(`pages/posts/${i}.html`, pug.renderFile('./pugs/postlist.pug', {posts: splittedPosts, now: now, after: after, before: before, categories: categoryLinks}));
+    fs.writeFileSync(`pages/posts/${i}.html`, pug.renderFile('./pugs/postlist.pug', {allposts: allposts, categorylist: categorylist, posts: splittedPosts, now: now, after: after, before: before, categories: categoryLinks}));
 }
 
 if (pagelength == 0) {
-    fs.writeFileSync('pages/posts/0.html', pug.renderFile('./pugs/postlist.pug', {posts: [], now: {number: 0,url: `/posts/0.html`}, after: [], before: [], categories: {}}));
+    fs.writeFileSync('pages/posts/0.html', pug.renderFile('./pugs/postlist.pug', {allposts: 0, categories: [], posts: [], now: {number: 0,url: `/posts/0.html`}, after: [], before: [], categories: {}}));
 }

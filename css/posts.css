@@ -3,6 +3,12 @@
     table#posts {
         width: 60vw;
     }
+    div#categories {
+        width: 15vw;
+        margin-right: 2.5vw;
+        padding-top: 0.5vh;
+        padding-bottom: 1vh;
+    }
     td.category {
         width: 15vh;
     }
@@ -26,8 +32,16 @@
     td.date {
         width: 20vh;
     }
+    div#lists {
+        flex-direction: column;
+    }
 }
 
+div#categories {
+    text-align: left;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
 table#posts {
     border-collapse: collapse;
 }
@@ -43,8 +57,8 @@ td.title {
 }
 
 tr.post {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #999999;
 }
 
 a.number {

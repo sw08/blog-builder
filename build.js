@@ -168,5 +168,5 @@ for (var i = 0; i < pagelength; i++) {
 }
 
 if (pagelength == 0) {
-    fs.writeFileSync('pages/posts/0.html', pug.renderFile('./pugs/postlist.pug', {allposts: 0, categories: [], posts: [], now: {number: 0,url: `/posts/0.html`}, after: [], before: [], categories: {}}));
+    fs.writeFileSync('pages/posts/0.html', pug.renderFile('./pugs/postlist.pug', {allposts: 0, categorylist: [], posts: [], now: {number: 0,url: `/posts/0.html`}, after: [], before: [], categories: {}}));
 }

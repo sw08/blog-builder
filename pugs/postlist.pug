@@ -37,13 +37,14 @@ block append content
                 tr
                     .smallspace
                     h4.graytext 작성된 포스트가 없습니다.
-    .smallspace
-    div#pages.middle
-        for page in before
-            a.number(href=page.url)
-                h5=page.number
-        a.number(href=now.url)
-            h5(style='text-decoration: underline !important')=now.number
-        for page in after
-            a.number(href=page.url)
-                h5=page.number
+    unless posts.length == 0
+        .smallspace
+        div#pages.middle
+            for page in before
+                a.number(href=page.url)
+                    h5=page.number
+            a.number(href=now.url)
+                h5(style='text-decoration: underline !important')=now.number
+            for page in after
+                a.number(href=page.url)
+                    h5=page.number

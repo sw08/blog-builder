@@ -3,7 +3,19 @@
     #header {
         height: 7.5vh;
         padding: 1%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 98%;
+        z-index: 1;
     }
+
+    #headerspace {
+        height: 7.5vh;
+        padding: 1%;
+        position: relative;
+    }
+
     #nav {
         flex-direction: row;
     }
@@ -12,6 +24,7 @@
 /* mobile */
 @media (max-aspect-ratio: 1) {
     #header {
+        position: relative;
         height: 3.75vh;
         padding: 1%;
     }
@@ -27,7 +40,7 @@
 }
 
 #header {
-    position: relative;
+    color: white;
 }
 
 .menuBtn {

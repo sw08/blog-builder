@@ -12,33 +12,43 @@
     body {
         font-size: 2vh;
     }
+
     .XXL {
         font-size: 15vh;
     }
+
     .XL {
         font-size: 12vh;
     }
+
     .L {
         font-size: 9vh;
     }
+
     h1 {
         font-size: 6vh;
     }
+
     h2 {
         font-size: 5vh;
     }
+
     h3 {
         font-size: 4vh
     }
+
     h4 {
         font-size: 3vh;
     }
+
     h5 {
         font-size: 2.5vh
     }
+
     h6 {
         font-size: 2vh
     }
+
     .mobile {
         display: none !important;
     }
@@ -49,33 +59,43 @@
     body {
         font-size: 2.2vh;
     }
+
     .XXL {
         font-size: 11.4vh;
     }
+
     .XL {
         font-size: 9.3vh;
     }
+
     .L {
         font-size: 7.1vh;
     }
+
     h1 {
         font-size: 5vh;
     }
+
     h2 {
         font-size: 4.3vh;
     }
+
     h3 {
         font-size: 3.6vh;
     }
+
     h4 {
         font-size: 2.9vh;
     }
+
     h5 {
         font-size: 2.55vh
     }
+
     h6 {
         font-size: 2.2vh
     }
+
     .desktop {
         display: none !important;
     }
@@ -84,14 +104,17 @@
 div.smallspace {
     height: 5vh;
 }
+
 div.space {
     height: 15vh;
 }
+
 div.bigspace {
     height: 25vh;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
 }
@@ -118,14 +141,13 @@ div {
 
 div.content {
     position: relative;
+    width: 100%;
 }
 
 div.middle {
     display: flex;
     justify-content: center;
-    align-items:center;
-    margin-left: auto;
-    margin-right: auto;
+    align-items: center;
 }
 
 div.vertical {
@@ -160,10 +182,12 @@ div.blue {
     background-color: #1f45fc;
 }
 
+div.whiteblue {
+    background-color: #effaff;
+}
+
 
 div#bg {
-    background-image: url('/assets/bg.png');
-    background-repeat: repeat;
     position: fixed;
     left: 0;
     top: 0;
@@ -176,7 +200,12 @@ a {
     color: inherit;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     display: inline-block;
     margin: auto !important;
     color: inherit;
@@ -194,6 +223,9 @@ h1, h2, h3, h4, h5, h6 {
     color: #FFFFFF
 }
 
-.translucentBg {
-    background-color: rgba(255, 255, 255, 0.35);
+
+.sect {
+    width: 100vw;
+    padding-top: 12.5vh;
+    padding-bottom: 12.5vh;
 }

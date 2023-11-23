@@ -3,18 +3,22 @@
     table#posts {
         width: 60vw;
     }
+
     div#categories {
         width: 15vw;
         margin-right: 2.5vw;
         padding-top: 0.5vh;
         padding-bottom: 1vh;
     }
+
     td.category {
         width: 15vh;
     }
+
     td.date {
         width: 25vh;
     }
+
     td.title {
         padding-left: 1vw;
     }
@@ -26,12 +30,15 @@
     table#posts {
         width: 100vw;
     }
+
     td.category {
         width: 20vh;
     }
+
     td.date {
         width: 20vh;
     }
+
     div#lists {
         flex-direction: column;
     }
@@ -39,9 +46,10 @@
 
 div#categories {
     text-align: left;
-    align-items: flex-start;
-    justify-content: flex-start;
+    vertical-align: top;
+    height: 100%;
 }
+
 table#posts {
     border-collapse: collapse;
 }
@@ -52,6 +60,7 @@ td.title {
     overflow: hidden;
     white-space: nowrap;
 }
+
 td.title {
     display: flex;
 }

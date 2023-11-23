@@ -6,7 +6,7 @@ block append head
     meta(property='og:title', content="Main | yswysw")
 
 block append content
-    .middle.vertical#intro
+    .middle.vertical.sect#intro
         h1.XXL Hello! 👋
         .smallspace
         h2 안녕하세요, 학생 개발자 #[span.bluetext yswysw]입니다!
@@ -23,8 +23,7 @@ block append content
                 .button.blue.middle
                     img(src='/assets/about.svg' style='height: 1.5em;margin-right: 0.75em;')
                     h4 More About
-    .bigspace
-    .middle#blog
+    .middle.whiteblue.sect#blog
         div#blogintro
             img#bloglogo(src='/assets/blogProfile.jpg')
             h4 모터스포츠, 프로그래밍 등 제 관심 분야들을 주제로 운영하는 블로그입니다.
@@ -37,8 +36,7 @@ block append content
                         h4.posttitle(style='margin-left: 0 !important')=post.title
                         p(style='text-align: right;margin: 0')=post.date
                         p.graytext.postPreview=post.preview
-    .bigspace
-    .middle.vertical#profile
+    .middle.vertical.sect#profile
         img#avatar(src='/assets/profile.png')
         .smallspace
         h3 제 소개 혹은 관련 정보는 #[a(href='/about.html').bluetext 여기]에서 보실 수 있습니다.

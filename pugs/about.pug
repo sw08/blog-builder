@@ -6,60 +6,62 @@ block append head
     meta(property='og:title', content="About | yswysw")
 
 block append content
+    .middle.vertical.sect
+        .middle#intro
+            img#avatar(src='/assets/profile.png')
+            .middle.vertical
+                .middle(style='margin-left:0')
+                    h2(style='margin-left: 0 !important') Seungwoo Yi
+                    a(href='https://github.com/sw08')
+                        img#github(src='/assets/github-black.svg')
+                ul#description
+                    li 이름: 이승우
+                    li MBTI: ISTP
+                    li 나이: 만 15살(2008년 출생)
+                    li 메인 사용 언어: 파이썬/js
+                    li 이메일: yswysw0518@gmail.com
+                    li 닉네임: 주로 이름의 약자에서 따온 yswysw, sw08 등
+                    li 좋아하는 것: 모터스포츠, 수학, 공학
+                    li 주로 다루는 분야: 웹 프론트엔드/백엔드
+                    li 배우고 싶은 분야: 네이티브 앱 제작, AI
+                    li 개발자로써 추구하는 것: "단순함은 궁극의 정교함이다."
+                    li 개인으로써 추구하는 것: "Stay hungry, stay foolish."
+                    li
+                        a.bluetext(href='#devprofile') 개발자로써의 프로필
     .space
-    .middle#intro
-        img#avatar(src='/assets/profile.png')
-        .middle.vertical
-            .middle(style='margin-left:0')
-                h2(style='margin-left: 0 !important') Seungwoo Yi
-                a(href='https://github.com/sw08')
-                    img#github(src='/assets/github-black.svg')
-            ul#description
-                li 이름: 이승우
-                li MBTI: ISTP
-                li 나이: 만 15살(2008년 출생)
-                li 메인 사용 언어: 파이썬/js
-                li 이메일: yswysw0518@gmail.com
-                li 닉네임: 주로 이름의 약자에서 따온 yswysw, sw08 등
-                li 좋아하는 것: 모터스포츠, 수학, 공학
-                li 주로 다루는 분야: 웹 프론트엔드/백엔드
-                li 배우고 싶은 분야: 네이티브 앱 제작, AI
-                li 개발자로써 추구하는 것: "단순함은 궁극의 정교함이다."
-                li 개인으로써 추구하는 것: "Stay hungry, stay foolish."
-                li
-                    a.bluetext(href='#devprofile') 개발자로써의 프로필
-    .bigspace
-    .middle#devprofile
-        .middle.vertical#stats
-            h2 Github Stats
-            img.stat(src='https://github-readme-stats.vercel.app/api/top-langs/?username=sw08&layout=compact')
-            img.stat(src='https://github-readme-stats.vercel.app/api?username=sw08')
-        .middle.vertical#ability
-            h3 Programming Language
-            .middle
-                img.badge(src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white")
-                img.badge(src="https://img.shields.io/badge/html5-302683?style=for-the-badge&logo=html5&logoColor=white")
-                img.badge(src="https://img.shields.io/badge/js-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white")
-                img.badge(src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white")
-            .smallspace
-            h3 Library/Framework
-            .middle
-                img.badge(src="https://img.shields.io/badge/fastapi-009688?style=for-the-badge&logo=fastapi&logoColor=white")
-                img.badge(src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=node.js&logoColor=white")
-                img.badge(src="https://img.shields.io/badge/passport-34E27a?style=for-the-badge&logo=passport&logoColor=white")
-                img.badge(src="https://img.shields.io/badge/pug-a86454?style=for-the-badge&logo=pug&logoColor=white")
-                img.badge(src="https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=white")
-            .smallspace
-            h3 Others
-            .middle
-                img.badge(src="https://img.shields.io/badge/arduino-00979d?style=for-the-badge&logo=arduino&logoColor=white")
-                img.badge(src="https://img.shields.io/badge/inkscape-000000?style=for-the-badge&logo=inkscape&logoColor=white")
-                img.badge(src="https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white")
-                img.badge(src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white")
-            .smallspace
-            h3 Learning
-            .middle
-                img.badge(src='https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white')
-                img.badge(src='https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white')
-                img.badge(src='https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=white')
-                img.badge(src='https://img.shields.io/badge/MongoDB-000000?style=for-the-badge&logo=mongodb&logoColor=white')
+    .middle.vertical.whiteblue.sect
+        .middle#devprofile
+            .middle.vertical#stats
+                h2 Github Stats
+                img.stat(src='https://github-readme-stats.vercel.app/api/top-langs/?username=sw08&layout=compact')
+                img.stat(src='https://github-readme-stats.vercel.app/api?username=sw08')
+            .middle.vertical#ability
+                h3 Programming Language
+                .middle
+                    img.badge(src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white")
+                    img.badge(src="https://img.shields.io/badge/html5-302683?style=for-the-badge&logo=html5&logoColor=white")
+                    img.badge(src="https://img.shields.io/badge/js-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white")
+                    img.badge(src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white")
+                .smallspace
+                h3 Library/Framework
+                .middle
+                    img.badge(src="https://img.shields.io/badge/fastapi-009688?style=for-the-badge&logo=fastapi&logoColor=white")
+                    img.badge(src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=node.js&logoColor=white")
+                    img.badge(src="https://img.shields.io/badge/passport-34E27a?style=for-the-badge&logo=passport&logoColor=white")
+                    img.badge(src="https://img.shields.io/badge/pug-a86454?style=for-the-badge&logo=pug&logoColor=white")
+                    img.badge(src="https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=white")
+                .smallspace
+                h3 Others
+                .middle
+                    img.badge(src="https://img.shields.io/badge/arduino-00979d?style=for-the-badge&logo=arduino&logoColor=white")
+                    img.badge(src="https://img.shields.io/badge/inkscape-000000?style=for-the-badge&logo=inkscape&logoColor=white")
+                    img.badge(src="https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white")
+                    img.badge(src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white")
+                    img.badge(src='https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=white')
+                .smallspace
+                h3 Learning
+                .middle
+                    img.badge(src='https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white')
+                    img.badge(src='https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white')
+                    img.badge(src='https://img.shields.io/badge/MongoDB-000000?style=for-the-badge&logo=mongodb&logoColor=white')
+        .smallspace

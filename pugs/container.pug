@@ -8,11 +8,8 @@ html
         meta(property='og:type', content='website')
         meta(property='og:image', content='/assets/profile.png')
         meta(property='og:description', content="yswysw")
-        script(src='/js/bg.js', type='text/javascript')
         block head
     body
-        div#bg
         include header.pug
-        .content
+        .content.vertical.middle
             block content
-        .space

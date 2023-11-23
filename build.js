@@ -6,8 +6,8 @@ const plainText = require('markdown-it-plain-text');
 const md = new MarkdownIt();
 md.use(plainText);
 
-try {fs.rmSync('pages', {recursive: true});}
-catch {}
+try { fs.rmSync('pages', { recursive: true }); }
+catch { }
 fs.mkdirSync('pages');
 fs.mkdirSync('pages/post');
 fs.mkdirSync('pages/posts');
@@ -70,13 +70,13 @@ for (var i = 0; i < posts.length; i++) {
         `pages/post/${category}/${post}.html`,
         pug.renderFile('pugs/post.pug', {
             title: post,
-            content: md.render(content), 
-            next: next, 
+            content: md.render(content),
+            next: next,
             previous: previous,
             category: category,
             date: `${post.slice(0, 2)}/${post.slice(2, 4)}/${post.slice(4, 6)} ${post.slice(6, 8)}:${post.slice(8, 10)}`
         }),
-        () => {}
+        () => { }
     );
 }
 
@@ -112,7 +112,7 @@ while (recentPosts.length < 3) {
         date: ''
     });
 }
-fs.writeFileSync('pages/index.html', pug.renderFile('./pugs/index.pug', {posts: recentPosts}));
+fs.writeFileSync('pages/index.html', pug.renderFile('./pugs/index.pug', { posts: recentPosts }));
 
 
 var before, after, splittedPosts;
@@ -125,7 +125,7 @@ var allposts = 0;
 for (const category of Object.keys(categoryLinks)) {
     categorylist.push({
         name: category,
-        url: categoryLinks[category] + '.html',
+        url: '/' + categoryLinks[category] + '.html',
         posts: sortedPosts[category].length
     });
     allposts += categorylist.at(-1).posts
@@ -164,9 +164,13 @@ for (var i = 0; i < pagelength; i++) {
             url: `/posts/${j}.html`
         });
     }
-    fs.writeFileSync(`pages/posts/${i}.html`, pug.renderFile('./pugs/postlist.pug', {allposts: allposts, categorylist: categorylist, posts: splittedPosts, now: now, after: after, before: before, categories: categoryLinks}));
+    fs.writeFileSync(`pages/posts/${i}.html`, pug.renderFile('./pugs/postlist.pug', { allposts: allposts, categorylist: categorylist, posts: splittedPosts, now: now, after: after, before: before, categories: categoryLinks }));
 }
 
 if (pagelength == 0) {
-    fs.writeFileSync('pages/posts/0.html', pug.renderFile('./pugs/postlist.pug', {allposts: 0, categorylist: [], posts: [], now: {number: 0,url: `/posts/0.html`}, after: [], before: [], categories: {}}));
+    fs.writeFileSync('pages/posts/0.html', pug.renderFile('./pugs/postlist.pug', { allposts: 0, categorylist: [], posts: [], now: { number: 0, url: `/posts/0.html` }, after: [], before: [], categories: {} }));
+}
+
+for (const category of Object.keys(sortedPosts)) {
+
 }

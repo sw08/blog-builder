@@ -11,8 +11,8 @@ block append content
         a(href='/search.html')
             h4 🔍︎ 검색
     .middle(style='align-items: flex-start')#lists
-        .middle.vertical.translucentBg#categories
-            h4
+        .whiteblue#categories
+            h5
                 ul(style='margin:auto')
                     a(href=now.url)
                         li(style='text-decoration: underline !important') 전체글 보기(#{allposts})
@@ -47,3 +47,4 @@ block append content
             for page in after
                 a.number(href=page.url)
                     h5=page.number
+        .smallspace

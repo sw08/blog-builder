@@ -34,8 +34,9 @@ block append content
                             h5=post.date
             else
                 tr
-                    .smallspace
-                    h4.graytext 작성된 포스트가 없습니다.
+                    td
+                        .smallspace
+                        h4.graytext 작성된 포스트가 없습니다.
     unless posts.length == 0
         .smallspace
         div#pages.middle

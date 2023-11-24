@@ -4,6 +4,8 @@ block append head
     link(rel='stylesheet', href='/css/about.css')
     title About | yswysw
     meta(property='og:title', content="About | yswysw")
+    script(type='text/javascript').
+        const devprofile = () => window.scrollTo({left: 0, behavior:"smooth", top:window.pageYOffset + document.getElementById("devprofile").getBoundingClientRect().top})
 
 block append content
     .middle.vertical.sect
@@ -26,8 +28,8 @@ block append content
                     li 배우고 싶은 분야: 네이티브 앱 제작, AI
                     li 개발자로써 추구하는 것: "단순함은 궁극의 정교함이다."
                     li 개인으로써 추구하는 것: "Stay hungry, stay foolish."
-                    li
-                        a.bluetext(href='#devprofile') 개발자로써의 프로필
+                    li 
+                        span.bluetext(onclick='devprofile()') 개발자로써의 프로필
     .space
     .middle.vertical.whiteblue.sect
         .middle#devprofile

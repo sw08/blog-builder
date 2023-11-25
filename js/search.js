@@ -7,7 +7,7 @@ window.onload = async () => {
     document.getElementById('searchInput').value = window.keyword;
     window.category = (params.get('category') || '0').toString();
     document.getElementById('categorySelect').childNodes.forEach((x) => { if (x.value === window.category) { x.setAttribute('selected', 'selected') } })
-    fetch('/pages/data/category.json').then(resp => resp.json())
+    fetch('/data/category.json').then(resp => resp.json())
         .then((resp) => {
             window.categoryLinks = resp;
             loadUntilFound();
@@ -32,7 +32,7 @@ async function loadUntilFound() {
 
 function loadPosts() {
     return new Promise((resolve, reject) => {
-        fetch('/pages/data/' + window.category + '/' + window.page.toString() + '.json')
+        fetch('/data/' + window.category + '/' + window.page.toString() + '.json')
             .then(resp => resp.json())
             .then((resp) => {
                 var found = false;

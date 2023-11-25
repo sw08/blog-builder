@@ -1,0 +1,28 @@
+extends container.pug
+
+block append head
+    link(rel='stylesheet', href='/css/search.css')
+    title='Posts | yswysw'
+    meta(property='og:title', content='Search | yswysw')
+    script(type='text/javascript' src='/js/search.js')
+
+block append content
+    .middle.vertical.sect
+        h1.L 검색
+        .smallspace
+        form(action='/search.html', accept-charset='UTF-8', name='keyword', method='get' style='align-items:start').middle.vertical#search
+            select(name="category").whiteblue.grayBorder#categorySelect
+                option(value='0') 전체 카테고리
+                each category in categorylist
+                    option(value=category)=category
+            br
+            input#searchInput(name='keyword')
+        .space
+    .middle.vertical.sect.whiteblue#result
+        h1 검색 결과
+        .smallspace
+        table#posts
+        
+        div#ended
+            .smallspace 
+            h4.graytext 검색 결과가 없습니다.

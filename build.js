@@ -2,6 +2,7 @@ const pug = require('pug');
 const fs = require('fs');
 const MarkdownIt = require('markdown-it');
 const plainText = require('markdown-it-plain-text');
+const { json } = require('express');
 
 const md = new MarkdownIt();
 md.use(plainText);
@@ -11,22 +12,30 @@ catch { }
 fs.mkdirSync('pages');
 fs.mkdirSync('pages/post');
 fs.mkdirSync('pages/posts');
+fs.mkdirSync('pages/data');
 for (const category of fs.readdirSync('post')) {
     fs.mkdirSync(`pages/post/${category}`);
 }
+if (!fs.existsSync('post')) fs.mkdirSync('post');
 
 // render post pages
+const posts = []; // sorted list of posts, not seperated
 var post;
-var categories = {};
-var sortedPosts = {};
-for (const category of fs.readdirSync('post')) {
+var _posts;
+var categories = {}; // category of every posts
+var sortedPosts = {}; // sorted list of posts seperated by category
+const _categories = fs.readdirSync('post');
+_categories.sort();
+for (const category of _categories) {
     sortedPosts[category] = [];
-    for (const post of fs.readdirSync(`post/${category}`)) {
+    _posts = fs.readdirSync(`post/${category}`);
+    _posts.sort()
+    for (const post of _posts) {
         categories[post.substring(0, post.length - 3)] = category;
         sortedPosts[category].push(post.substring(0, post.length - 3));
+        posts.push(post.substring(0, post.length - 3));
     }
 }
-const posts = Object.keys(categories);
 posts.sort();
 posts.reverse();
 var category;
@@ -83,7 +92,7 @@ for (var i = 0; i < posts.length; i++) {
 
 // render pages without additional content
 const files = fs.readdirSync('pugs').map(x => x.substring(0, x.length - 4)).sort();
-const exceptions = ['header', 'container', 'post', 'index', 'postlist', 'categorylist'];
+const exceptions = ['header', 'container', 'post', 'index', 'postlist', 'categorylist', 'search'];
 const pages = files.filter(x => !exceptions.includes(x));
 for (const page of pages) {
     fs.writeFileSync(`pages/${page}.html`, pug.renderFile('./pugs/' + page + '.pug'));
@@ -117,15 +126,15 @@ fs.writeFileSync('pages/index.html', pug.renderFile('./pugs/index.pug', { posts:
 
 var before, after, splittedPosts;
 var categoryLinks = {};
-for (const c of Object.keys(sortedPosts)) {
-    categoryLinks[c] = `category/${c}`;
+for (const c of _categories) {
+    categoryLinks[c] = `/category/${c}.html`;
 }
 var categorylist = [];
 var allposts = 0;
-for (const category of Object.keys(categoryLinks)) {
+for (const category of _categories) {
     categorylist.push({
         name: category,
-        url: '/' + categoryLinks[category] + '.html',
+        url: categoryLinks[category],
         posts: sortedPosts[category].length
     });
     allposts += categorylist.at(-1).posts
@@ -139,7 +148,7 @@ for (var i = 0; i < pagelength; i++) {
         category = categories[post];
         splittedPosts.push({
             title: post.slice(11),
-            category: category.length > 6 ? category.slice(0, 5) + '…' : category,
+            category: category.length > 10 ? category.slice(0, 9) + '…' : category,
             url: `/post/${category}/${post}.html`,
             date: `${post.slice(0, 2)}/${post.slice(2, 4)}/${post.slice(4, 6)} ${post.slice(6, 8)}:${post.slice(8, 10)}`
         });
@@ -171,6 +180,24 @@ if (pagelength == 0) {
     fs.writeFileSync('pages/posts/0.html', pug.renderFile('./pugs/postlist.pug', { allposts: 0, categorylist: [], posts: [], now: { number: 0, url: `/posts/0.html` }, after: [], before: [], categories: {} }));
 }
 
-for (const category of Object.keys(sortedPosts)) {
+fs.writeFileSync('pages/search.html', pug.renderFile('./pugs/search.pug', { categorylist: _categories }))
 
+function divide(list, per) {
+    if (list.length > per) {
+        return [list.slice(0, per)].concat(divide(list.slice(per), per))
+    } else {
+        return [list]
+    }
 }
+
+var n;
+sortedPosts[0] = posts.map(x => categories[x] + '$' + x);
+for (const category of Object.keys(sortedPosts)) {
+    fs.mkdirSync('pages/data/' + category + '/');
+    n = 0;
+    for (const divided of divide(sortedPosts[category], 30)) {
+        fs.writeFile('pages/data/' + category + '/' + (n++).toString() + '.json', JSON.stringify(divided), () => { });
+    }
+}
+categoryLinks['0'] = '/posts/0.html'
+fs.writeFile('pages/data/category.json', JSON.stringify(categoryLinks), () => { });

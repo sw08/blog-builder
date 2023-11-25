@@ -10,15 +10,16 @@ block append content
     .middle(style='justify-content: flex-end;margin-bottom: 1vh')
         a(href='/search.html')
             h4 🔍︎ 검색
-    .middle(style='align-items: flex-start')#lists
-        .whiteblue#categories
-            h5
-                ul(style='margin:auto')
-                    a(href=now.url)
+    .middle(style='align-items:start')#lists
+        .whiteblue.grayBorder#categories
+            ul(style='margin:auto')
+                a(href=now.url)
+                    h5 
                         li(style='text-decoration: underline !important') 전체글 보기(#{allposts})
-                    unless categorylist.length == 0
-                        each category in categorylist
-                            a(href=category.url)
+                unless categorylist.length == 0
+                    each category in categorylist
+                        a(href=category.url)
+                            h6
                                 li=category.name + `(${category.posts})`
         table#posts
             unless posts.length == 0
@@ -26,12 +27,12 @@ block append content
                     tr.post
                         td.category
                             a(href=categories[post.category])
-                                h5=post.category
-                        td.title.middle
+                                h6=post.category
+                        td.title.middle.vertical(style='align-items:start')
                             a(href=post.url)
                                 h4=post.title
                         td.date.desktop
-                            h5=post.date
+                            h6.graytext=post.date
             else
                 tr
                     td

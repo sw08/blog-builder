@@ -144,13 +144,13 @@ div.content {
     width: 100%;
 }
 
-div.middle {
+.middle {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-div.vertical {
+.vertical {
     flex-direction: column;
 }
 
@@ -174,26 +174,18 @@ div.button:hover {
     opacity: 0.8;
 }
 
-div.black {
+.black {
     background-color: #222222;
 }
 
-div.blue {
+.blue {
     background-color: #1f45fc;
 }
 
-div.whiteblue {
+.whiteblue {
     background-color: #effaff;
 }
 
-
-div#bg {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-}
 
 a {
     text-decoration: none;
@@ -228,4 +220,8 @@ h6 {
     width: 100vw;
     padding-top: 12.5vh;
     padding-bottom: 12.5vh;
+}
+
+.grayBorder {
+    border: 0.25vh solid #eeeeee;
 }

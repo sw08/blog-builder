@@ -4,13 +4,6 @@
         width: 45vw;
     }
 
-    div#categories {
-        width: 15vw;
-        margin-right: 2.5vw;
-        padding-top: 0.5vh;
-        padding-bottom: 1vh;
-    }
-
     td.category {
         width: 15vh;
     }
@@ -38,16 +31,39 @@
     td.date {
         width: 20vh;
     }
-
-    div#lists {
-        flex-direction: column;
-    }
 }
 
-div#categories {
+#searchInput {
+    border: 0.25vw solid #1f45fc;
+    border-radius: 10vw 10vw 0 10vw;
     text-align: left;
-    vertical-align: top;
-    height: 100%;
+    font-size: 6vh;
+    vertical-align: middle;
+    padding: 1vh 2.5vw 1vh calc(6vh + 2vw);
+    background-image: url('/assets/search.svg');
+    background-repeat: no-repeat;
+    background-size: 6vh;
+    background-position: 1vw center;
+}
+
+#searchInput:focus,
+#categorySelect:focus,
+#orderSelect:focus {
+    outline: none;
+}
+
+#categorySelect,
+#orderSelect {
+    font-size: 2.5vh;
+    padding: 1vh 3vw 1vh 1vw;
+}
+
+#result {
+    display: none;
+}
+
+#ended {
+    display: none;
 }
 
 table#posts {
@@ -65,9 +81,4 @@ td.title {
 tr.post {
     border-top: 1px solid #999999;
     border-bottom: 1px solid #999999;
-}
-
-a.number {
-    margin-left: 0.5vw;
-    margin-right: 0.5vw;
 }

@@ -45,14 +45,22 @@ img#github {
     margin: 1vw;
 }
 
-img.stat,
 img.badge {
-    margin: 2.5vh 0.5vw;
+    margin: 0.25vw 0.5vw;
+}
+
+img.stat {
+    width: 80%;
+    margin: 1vh;
 }
 
 ul#description {
     word-break: keep-all;
     text-align: left;
+}
+
+div.wrap {
+    flex-flow: row wrap;
 }
 
 

@@ -176,7 +176,7 @@ function categoryPosts(categoryCode, posts) {
     }
 
     if (pagelength == 0) {
-        fs.writeFileSync(`pages/posts/${categoryCode}/0.html`, pug.renderFile('./pugs/postlist.pug', { selected: categoryCode, allposts: 0, categorylist: categorylist, posts: [], now: { number: 0, url: `/posts/0/0.html` }, after: [], before: [], categories: categoryLinks }));
+        fs.writeFileSync(`pages/posts/${categoryCode}/0.html`, pug.renderFile('./pugs/postlist.pug', { selected: categoryCode, allposts: allposts, categorylist: categorylist, posts: [], now: { number: 0, url: `/posts/0/0.html` }, after: [], before: [], categories: categoryLinks }));
     }
 }
 categoryPosts("0", posts);

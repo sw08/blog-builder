@@ -39,6 +39,15 @@ for (const category of _categories) {
 }
 posts.sort();
 posts.reverse();
+
+var categoryLinks = {};
+for (const c of _categories) {
+    categoryLinks[c] = `/category/${c}.html`;
+}
+categoryLinks['0'] = '/posts/0.html'
+fs.writeFile('pages/data/category.json', JSON.stringify(categoryLinks), () => { });
+
+// render pages with additional content
 var category;
 for (var i = 0; i < posts.length; i++) {
     post = posts[i];
@@ -83,23 +92,13 @@ for (var i = 0; i < posts.length; i++) {
             content: md.render(content),
             next: next,
             previous: previous,
-            category: category,
+            category: { name: category, url: categoryLinks[category] },
             date: `${post.slice(0, 2)}/${post.slice(2, 4)}/${post.slice(4, 6)} ${post.slice(6, 8)}:${post.slice(8, 10)}`
         }),
         () => { }
     );
 }
 
-
-// render pages without additional content
-const files = fs.readdirSync('pugs').map(x => x.substring(0, x.length - 4)).sort();
-const exceptions = ['header', 'container', 'post', 'index', 'postlist', 'categorylist', 'search'];
-const pages = files.filter(x => !exceptions.includes(x));
-for (const page of pages) {
-    fs.writeFileSync(`pages/${page}.html`, pug.renderFile('./pugs/' + page + '.pug'));
-}
-
-// render pages with additional content
 const recentPosts = [];
 var preview, date;
 const length = 300;
@@ -126,10 +125,6 @@ fs.writeFileSync('pages/index.html', pug.renderFile('./pugs/index.pug', { posts:
 
 
 var before, after, splittedPosts;
-var categoryLinks = {};
-for (const c of _categories) {
-    categoryLinks[c] = `/category/${c}.html`;
-}
 var categorylist = [];
 var allposts = 0;
 for (const category of _categories) {
@@ -200,5 +195,11 @@ for (const category of Object.keys(sortedPosts)) {
         fs.writeFile('pages/data/' + category + '/' + (n++).toString() + '.json', JSON.stringify(divided), () => { });
     }
 }
-categoryLinks['0'] = '/posts/0.html'
-fs.writeFile('pages/data/category.json', JSON.stringify(categoryLinks), () => { });
+
+// render pages without additional content
+const files = fs.readdirSync('pugs').map(x => x.substring(0, x.length - 4)).sort();
+const exceptions = ['header', 'container', 'post', 'index', 'postlist', 'categorylist', 'search'];
+const pages = files.filter(x => !exceptions.includes(x));
+for (const page of pages) {
+    fs.writeFileSync(`pages/${page}.html`, pug.renderFile('./pugs/' + page + '.pug'));
+}

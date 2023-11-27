@@ -4,7 +4,10 @@ h1#title {
 }
 
 
-div#post, h1#title, h6#date, h5#category {
+div#post,
+h1#title,
+h6#date,
+h5#category {
     text-align: left;
 }
 
@@ -24,7 +27,7 @@ div#line {
     left: 0;
     width: 100%;
     height: 0;
-    border: 2px solid white;
+    border: 1px solid black;
 }
 
 td.date {
@@ -42,25 +45,29 @@ td.description td.title {
 
 table#nextandprevious {
     margin: auto;
-    border-bottom: 4px solid white;
-    border-top: 4px solid white;
-    background-color: rgba(255, 255, 255, 0.35);
 }
+
 
 /* desktop */
 @media (min-aspect-ratio:1) {
     h1#title {
         margin: 0 !important;
     }
-    h1#title, div#post, h6#date, h5#category {
+
+    h1#title,
+    div#post,
+    h6#date,
+    h5#category {
         width: 70vw;
         padding-right: 5vw;
         padding-left: 5vw;
     }
+
     table#nextandprevious {
         width: 70vw;
         padding: 1vh 2.5vw;
     }
+
     td.description {
         width: 12vh;
     }
@@ -73,12 +80,18 @@ table#nextandprevious {
         padding-right: 0.5vw;
         padding-left: 0.5vw;
     }
-    h1#title, div#post, h6#date, h5#category {
+
+    h1#title,
+    div#post,
+    h6#date,
+    h5#category {
         width: 100vw;
     }
+
     table#nextandprevious {
         width: 100vw;
     }
+
     td.description {
         width: 10vh;
     }

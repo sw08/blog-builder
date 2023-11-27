@@ -2,6 +2,15 @@ from distutils.dir_util import copy_tree
 import os
 import shutil
 
+os.chdir("../build")
+for i in os.listdir():
+    if i == ".git":
+        continue
+    if os.path.isdir(i):
+        shutil.rmtree(i)
+    else:
+        os.remove(i)
+
 os.chdir("../")
 for i in ["css", "js", "assets"]:
     if os.path.isdir("build/" + i):

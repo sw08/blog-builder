@@ -31,6 +31,7 @@ for (const category of _categories) {
     _posts = fs.readdirSync(`post/${category}`);
     _posts.sort()
     for (const post of _posts) {
+        if (post.startsWith('-')) continue;
         categories[post.substring(0, post.length - 3)] = category;
         sortedPosts[category].push(post.substring(0, post.length - 3));
         posts.push(post.substring(0, post.length - 3));

@@ -5,6 +5,14 @@ block append head
     title='Posts | yswysw'
     meta(property='og:title', content='Posts | yswysw')
 
+mixin category(url, text, selected)
+    li
+        a(href=url)
+            if selected
+                h5(style='text-decoration: underline !important')=text
+            else
+                h5=text
+
 block append content
     .smallspace
     .middle(style='justify-content: flex-end;margin-bottom: 1vh')
@@ -13,14 +21,11 @@ block append content
     .middle(style='align-items:start')#lists
         .whiteblue.grayBorder#categories
             ul(style='margin:auto')
-                li(style='text-decoration: underline !important')
-                    a(href=now.url)
-                        h5 전체글 보기(#{allposts})
+                +category(now.url, `전체글 보기 (${allposts})`, selected == "0")
                 unless categorylist.length == 0
                     each category in categorylist
-                        li
-                            a(href=category.url)
-                                h6=category.name + `(${category.posts})`
+                        +category(category.url, `${category.name} (${category.posts})`, selected == category.name)
+
         table#posts
             unless posts.length == 0
                 each post in posts

@@ -42,9 +42,9 @@ posts.reverse();
 
 var categoryLinks = {};
 for (const c of _categories) {
-    categoryLinks[c] = `/category/${c}.html`;
+    categoryLinks[c] = `/posts/${c}/0.html`;
 }
-categoryLinks['0'] = '/posts/0.html'
+categoryLinks['0'] = '/posts/0/0.html'
 fs.writeFile('pages/data/category.json', JSON.stringify(categoryLinks), () => { });
 
 // render pages with additional content
@@ -135,46 +135,55 @@ for (const category of _categories) {
     });
     allposts += categorylist.at(-1).posts
 }
-const pagelength = parseInt(posts.length / 15) + Boolean(posts.length % 15);
-for (var i = 0; i < pagelength; i++) {
-    splittedPosts = [];
-    for (var j = 0; j < 15; j++) {
-        if (15 * i + j == posts.length) break;
-        post = posts[15 * i + j];
-        category = categories[post];
-        splittedPosts.push({
-            title: post.slice(11),
-            category: category.length > 10 ? category.slice(0, 9) + '…' : category,
-            url: `/post/${category}/${post}.html`,
-            date: `${post.slice(0, 2)}/${post.slice(2, 4)}/${post.slice(4, 6)} ${post.slice(6, 8)}:${post.slice(8, 10)}`
-        });
+
+function categoryPosts(categoryCode, posts) {
+    fs.mkdirSync('pages/posts/' + categoryCode);
+    const pagelength = parseInt(posts.length / 15) + Boolean(posts.length % 15);
+    for (var i = 0; i < pagelength; i++) {
+        splittedPosts = [];
+        for (var j = 0; j < 15; j++) {
+            if (15 * i + j == posts.length) break;
+            post = posts[15 * i + j];
+            category = categories[post];
+            splittedPosts.push({
+                title: post.slice(11),
+                category: category.length > 10 ? category.slice(0, 9) + '…' : category,
+                url: `/post/${category}/${post}.html`,
+                date: `${post.slice(0, 2)}/${post.slice(2, 4)}/${post.slice(4, 6)} ${post.slice(6, 8)}:${post.slice(8, 10)}`
+            });
+        }
+        before = [];
+        start = i >= 5 ? i - 5 : 0
+        for (var j = start; j < i; j++) {
+            before.push({
+                number: j,
+                url: `/posts/${categoryCode}/${j}.html`
+            });
+        }
+        now = {
+            number: i,
+            url: `/posts/${categoryCode}/${i}.html`
+        };
+        after = [];
+        end = i <= pagelength - 5 ? i + 5 : pagelength
+        for (var j = i + 1; j < end; j++) {
+            after.push({
+                number: j,
+                url: `/posts/${categoryCode}/${j}.html`
+            });
+        }
+        fs.writeFileSync(`pages/posts/${categoryCode}/${i}.html`, pug.renderFile('./pugs/postlist.pug', { selected: categoryCode, allposts: allposts, categorylist: categorylist, posts: splittedPosts, now: now, after: after, before: before, categories: categoryLinks }));
     }
-    before = [];
-    start = i >= 5 ? i - 5 : 0
-    for (var j = start; j < i; j++) {
-        before.push({
-            number: j,
-            url: `/posts/${j}.html`
-        });
+
+    if (pagelength == 0) {
+        fs.writeFileSync(`pages/posts/${categoryCode}/0.html`, pug.renderFile('./pugs/postlist.pug', { selected: categoryCode, allposts: 0, categorylist: categorylist, posts: [], now: { number: 0, url: `/posts/0.html` }, after: [], before: [], categories: categoryLinks }));
     }
-    now = {
-        number: i,
-        url: `/posts/${i}.html`
-    };
-    after = [];
-    end = i <= pagelength - 5 ? i + 5 : pagelength
-    for (var j = i + 1; j < end; j++) {
-        after.push({
-            number: j,
-            url: `/posts/${j}.html`
-        });
-    }
-    fs.writeFileSync(`pages/posts/${i}.html`, pug.renderFile('./pugs/postlist.pug', { allposts: allposts, categorylist: categorylist, posts: splittedPosts, now: now, after: after, before: before, categories: categoryLinks }));
+}
+categoryPosts("0", posts);
+for (const category of _categories) {
+    categoryPosts(category, sortedPosts[category]);
 }
 
-if (pagelength == 0) {
-    fs.writeFileSync('pages/posts/0.html', pug.renderFile('./pugs/postlist.pug', { allposts: 0, categorylist: [], posts: [], now: { number: 0, url: `/posts/0.html` }, after: [], before: [], categories: {} }));
-}
 
 fs.writeFileSync('pages/search.html', pug.renderFile('./pugs/search.pug', { categorylist: _categories }))
 

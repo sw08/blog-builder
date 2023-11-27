@@ -2,9 +2,11 @@
   "name": "blog-template",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "build.js",
   "scripts": {
-    "start": "node app.js"
+    "build": "node build.js",
+    "examplePosts": "python examplePosts.py",
+    "test": "node build.js True"
   },
   "author": "",
   "license": "ISC",

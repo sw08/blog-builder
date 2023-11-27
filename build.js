@@ -212,3 +212,16 @@ const pages = files.filter(x => !exceptions.includes(x));
 for (const page of pages) {
     fs.writeFileSync(`pages/${page}.html`, pug.renderFile('./pugs/' + page + '.pug'));
 }
+
+if (process.argv.length <= 2) return;
+var exec = require('child_process').exec,
+    child;
+
+child = exec('node liveTest.js',
+    function (error, stdout, stderr) {
+        console.log('stdout: ' + stdout);
+        console.log('stderr: ' + stderr);
+        if (error !== null) {
+            console.log('exec error: ' + error);
+        }
+    });

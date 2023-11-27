@@ -13,14 +13,14 @@ block append content
     .middle(style='align-items:start')#lists
         .whiteblue.grayBorder#categories
             ul(style='margin:auto')
-                a(href=now.url)
-                    h5 
-                        li(style='text-decoration: underline !important') 전체글 보기(#{allposts})
+                li(style='text-decoration: underline !important')
+                    a(href=now.url)
+                        h5 전체글 보기(#{allposts})
                 unless categorylist.length == 0
                     each category in categorylist
-                        a(href=category.url)
-                            h6
-                                li=category.name + `(${category.posts})`
+                        li
+                            a(href=category.url)
+                                h6=category.name + `(${category.posts})`
         table#posts
             unless posts.length == 0
                 each post in posts

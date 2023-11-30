@@ -3,12 +3,14 @@ import os
 import shutil
 
 os.chdir("../build")
-for i in os.listdir():
-    if i == ".git" or i.startswith("naver") or i.startswith("google"):
-        continue
+dirs = ["css", "js", "assets"]
+for i in dirs:
     if os.path.isdir(i):
         shutil.rmtree(i)
-    else:
+for i in os.listdir("../blog-builder/pages"):
+    if os.path.isdir(i):
+        shutil.rmtree(i)
+    elif os.path.isfile(i):
         os.remove(i)
 
 os.chdir("../")

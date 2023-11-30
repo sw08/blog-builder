@@ -4,7 +4,7 @@ import shutil
 
 os.chdir("../build")
 for i in os.listdir():
-    if i == ".git":
+    if i == ".git" or i.startswith("naver"):
         continue
     if os.path.isdir(i):
         shutil.rmtree(i)

@@ -3,7 +3,7 @@ import os
 import shutil
 
 os.chdir("../build")
-dirs = ["css", "js", "assets"]
+dirs = ["css", "js", "assets", "files"]
 for i in dirs:
     if os.path.isdir(i):
         shutil.rmtree(i)
@@ -14,7 +14,7 @@ for i in os.listdir("../blog-builder/pages"):
         os.remove(i)
 
 os.chdir("../")
-for i in ["css", "js", "assets", "files"]:
+for i in dirs:
     if os.path.isdir("build/" + i):
         shutil.rmtree("build/" + i)
     copy_tree("blog-builder/" + i, "build/" + i)

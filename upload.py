@@ -14,7 +14,7 @@ for i in os.listdir("../blog-builder/pages"):
         os.remove(i)
 
 os.chdir("../")
-for i in ["css", "js", "assets"]:
+for i in ["css", "js", "assets", "files"]:
     if os.path.isdir("build/" + i):
         shutil.rmtree("build/" + i)
     copy_tree("blog-builder/" + i, "build/" + i)

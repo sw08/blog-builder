@@ -6,12 +6,13 @@ block append head
     meta(property='og:title', content=title.slice(11))
 
 block append content
-    #titlebox.middle.vertical
+    #titlebox.middle.vertical.whiteblue
         .smallspace
         h5#category 
             a(href=category.url) ← Category: #{category.name}
-        h1.L#title!=title.slice(11)
+        h1#title!=title.slice(11)
         h6.graytext#date 20#{date}
+        .smallspace
     #post
         != content
     table.whiteblue#nextandprevious

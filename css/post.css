@@ -1,11 +1,11 @@
-h1#title {
+#title {
     word-break: break-all;
     display: block;
 }
 
 
 div#post,
-h1#title,
+#title,
 h6#date,
 h5#category {
     text-align: left;
@@ -13,6 +13,7 @@ h5#category {
 
 div#post {
     min-height: 40vh;
+    padding-top: 5vh;
 }
 
 tr#middle {
@@ -50,11 +51,11 @@ table#nextandprevious {
 
 /* desktop */
 @media (min-aspect-ratio:1) {
-    h1#title {
+    #title {
         margin: 0 !important;
     }
 
-    h1#title,
+    #title,
     div#post,
     h6#date,
     h5#category {
@@ -73,15 +74,19 @@ table#nextandprevious {
     }
 }
 
+#titlebox {
+    width: 100%;
+}
+
 
 /* mobile */
 @media (max-aspect-ratio: 1) {
-    h1#title {
+    #title {
         padding-right: 0.5vw;
         padding-left: 0.5vw;
     }
 
-    h1#title,
+    #title,
     div#post,
     h6#date,
     h5#category {

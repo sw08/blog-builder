@@ -2,9 +2,8 @@ const pug = require('pug');
 const fs = require('fs');
 const MarkdownIt = require('markdown-it');
 const plainText = require('markdown-it-plain-text');
-const { json } = require('express');
 
-const md = new MarkdownIt();
+const md = new MarkdownIt({ html: true });
 md.use(plainText);
 
 try { fs.rmSync('pages', { recursive: true }); }
@@ -17,6 +16,15 @@ for (const category of fs.readdirSync('post')) {
     fs.mkdirSync(`pages/post/${category}`);
 }
 if (!fs.existsSync('post')) fs.mkdirSync('post');
+
+
+function removeTags(text) {
+    for (const tag of ["iframe"]) {
+        text = text.replace(new RegExp(`<${tag}.*>.*</${tag}>`), '');;
+    }
+    return text;
+}
+
 
 // render post pages
 const posts = []; // sorted list of posts, not seperated
@@ -104,7 +112,7 @@ var preview, date;
 const length = 300;
 for (const post of (posts.length < 3 ? posts : posts.slice(posts.length - 3)).reverse()) {
     md.render(fs.readFileSync(`post/${categories[post]}/${post}.md`, 'utf8'));
-    preview = md.plainText.replace('\n', ' ');
+    preview = removeTags(md.plainText.replace('\n', ' '));
     date = post.slice(0, 6);
     recentPosts.push({
         title: post.slice(11),
@@ -172,6 +180,7 @@ function categoryPosts(categoryCode, posts) {
                 url: `/posts/${categoryCode}/${j}.html`
             });
         }
+        splittedPosts.reverse()
         fs.writeFileSync(`pages/posts/${categoryCode}/${i}.html`, pug.renderFile('./pugs/postlist.pug', { selected: categoryCode, allposts: allposts, categorylist: categorylist, posts: splittedPosts, now: now, after: after, before: before, categories: categoryLinks }));
     }
 

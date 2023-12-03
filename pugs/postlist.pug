@@ -21,7 +21,7 @@ block append content
     .middle(style='align-items:start')#lists
         .whiteblue.grayBorder#categories
             ul(style='margin:auto')
-                +category(now.url, `전체글 보기 (${allposts})`, selected == "0")
+                +category('/posts.html', `전체글 보기 (${allposts})`, selected == "0")
                 unless categorylist.length == 0
                     each category in categorylist
                         +category(category.url, `${category.name} (${category.posts})`, selected == category.name)

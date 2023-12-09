@@ -188,7 +188,7 @@ function categoryPosts(categoryCode, posts) {
         fs.writeFileSync(`pages/posts/${categoryCode}/0.html`, pug.renderFile('./pugs/postlist.pug', { selected: categoryCode, allposts: allposts, categorylist: categorylist, posts: [], now: { number: 0, url: `/posts/0/0.html` }, after: [], before: [], categories: categoryLinks }));
     }
 }
-categoryPosts("0", posts);
+categoryPosts("0", Array.from(posts).reverse());
 for (const category of _categories) {
     categoryPosts(category, sortedPosts[category]);
 }

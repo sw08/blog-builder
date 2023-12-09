@@ -128,15 +128,6 @@ body {
     position: relative;
 }
 
-code {
-    vertical-align: baseline;
-    padding: 0.1vw;
-    border-radius: 0.75vh;
-    font-family: 'Noto Sans', sans-serif;
-    text-align: center;
-    background-color: #dddddd;
-    color: #505050;
-}
 
 p {
     font-family: inherit;
@@ -243,4 +234,20 @@ h6 {
 img+em {
     display: block;
     color: #999999;
+}
+
+pre>code {
+    display: block;
+    text-align: left;
+    padding: 0.5vw;
+}
+
+code {
+    vertical-align: baseline;
+    padding: 0.1vw;
+    border-radius: 0.75vh;
+    font-family: 'Noto Sans', sans-serif;
+    text-align: center;
+    background-color: #dddddd;
+    color: #505050;
 }

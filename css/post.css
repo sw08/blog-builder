@@ -56,10 +56,15 @@ table#nextandprevious {
     }
 
     #title,
-    div#post,
     h6#date,
     h5#category {
         width: 70vw;
+        padding-right: 5vw;
+        padding-left: 5vw;
+    }
+
+    div#post {
+        width: 65vw;
         padding-right: 5vw;
         padding-left: 5vw;
     }

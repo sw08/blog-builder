@@ -7,6 +7,11 @@
     src: url('/assets/NotoSansKR-Regular.otf');
 }
 
+@font-face {
+    font-family: 'Noto Sans Mono';
+    src: url('/assets/NotoSansMono-Regular.ttf');
+}
+
 /* desktop */
 @media (min-aspect-ratio:1) {
     body {
@@ -51,6 +56,10 @@
 
     .mobile {
         display: none !important;
+    }
+
+    pre>code::before {
+        font-size: 1.6vh;
     }
 }
 
@@ -98,6 +107,10 @@
 
     .desktop {
         display: none !important;
+    }
+
+    pre>code::before {
+        font-size: 1.76vh;
     }
 }
 
@@ -244,13 +257,35 @@ pre>code {
     display: block;
     text-align: left;
     padding: 0.5vw;
+    background-color: rgb(45, 51, 59);
+    white-space: pre-wrap;
+    font-size: 0.95em;
+}
+
+pre>code::before {
+    counter-reset: listing;
+}
+
+pre>code>span.code {
+    counter-increment: listing;
+}
+
+pre>code>span.code::before {
+    content: counter(listing) " ";
+    font-weight: bold;
+    color: #888888;
+    text-align: right;
+    width: 1.6em;
+    font-size: 0.8em;
+    display: inline-block;
+    margin-right: 0.5em;
 }
 
 code {
     vertical-align: baseline;
     padding: 0.1vw;
     border-radius: 0.75vh;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Noto Sans Mono', monospace;
     text-align: center;
     background-color: #dddddd;
     color: #505050;

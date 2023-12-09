@@ -2,8 +2,23 @@ const pug = require('pug');
 const fs = require('fs');
 const MarkdownIt = require('markdown-it');
 const plainText = require('markdown-it-plain-text');
+const hljs = require('highlight.js');
 
-const md = new MarkdownIt({ html: true });
+const md = new MarkdownIt({
+    html: true,
+    highlight: function (str, lang) {
+        var code = ''
+        if (lang && hljs.getLanguage(lang)) {
+            try {
+                code = hljs.highlight(str, { language: lang, ignoreIllegals: true }).value;
+            } catch (__) { }
+        } else {
+            code = md.utils.escapeHtml(str);
+        }
+        return '<pre><code class="hljs">' + code.trim().split('\n').map(x => `<span class='code'><span class='codeline'>${x}</span></span>\n`).join('') + '</code></pre>';
+    },
+    breaks: true,
+});
 md.use(plainText);
 
 try { fs.rmSync('pages', { recursive: true }); }

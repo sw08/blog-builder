@@ -15,34 +15,33 @@ block append content
         .smallspace
     #post
         != content
-    table.whiteblue#nextandprevious
-        if next.title != " " || previous.title != " "
+    if next.title != " " || previous.title != " "
+        table.whiteblue#nextandprevious
             caption.whiteblue(style='text-align:left;padding-left: 2.5vw;padding-top:1vh')
                 h5 #{category.name} 카테고리의 글
             tr#middle
                 td
                     div#line
-        unless previous.title == " "
-            tr
-                td.description
-                    h4 이전글
-                td.title
-                    a(href=previous.url)
-                        h4(style='margin-left:0 !important')=previous.title 
-                td.date
-                    h4(style='margin-right:0 !important')=previous.date
-        if next.title != " " && previous.title != " "
-            tr#middle
-                td
-                    div#line
-        unless next.title == " "
-            tr
-                td.description
-                    h4 다음글
-                td.title
-                    a(href=next.url)
-                        h4(style='margin-left:0 !important')=next.title 
-                td.date
-                    h4(style='margin-right:0 !important')=next.date
-    if next.title != " " || previous.title != " "
+            unless previous.title == " "
+                tr
+                    td.description
+                        h4 이전글
+                    td.title
+                        a(href=previous.url)
+                            h4(style='margin-left:0 !important')=previous.title 
+                    td.date
+                        h4(style='margin-right:0 !important')=previous.date
+            if next.title != " " && previous.title != " "
+                tr#middle
+                    td
+                        div#line
+            unless next.title == " "
+                tr
+                    td.description
+                        h4 다음글
+                    td.title
+                        a(href=next.url)
+                            h4(style='margin-left:0 !important')=next.title 
+                    td.date
+                        h4(style='margin-right:0 !important')=next.date
         div.space

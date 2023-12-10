@@ -225,6 +225,16 @@ h6 {
     color: inherit;
 }
 
+div#post>h1,
+div#post>h2,
+div#post>h3,
+div#post>h4,
+div#post>h5,
+div#post>h6 {
+    display: block;
+    margin: 2vh 0 !important;
+}
+
 .graytext {
     color: #999999;
 }

@@ -7,7 +7,7 @@ const hljs = require('highlight.js');
 const md = new MarkdownIt({
     html: true,
     highlight: function (str, lang) {
-        var code = ''
+        var code = '';
         if (lang && hljs.getLanguage(lang)) {
             try {
                 code = hljs.highlight(str, { language: lang, ignoreIllegals: true }).value;
@@ -17,7 +17,7 @@ const md = new MarkdownIt({
         }
         return '<pre><code class="hljs">' + code.trim().split('\n').map(x => `<span class='code'><span class='codeline'>${x}</span></span>\n`).join('') + '</code></pre>';
     },
-    breaks: true,
+    breaks: true
 });
 md.use(plainText);
 
@@ -35,7 +35,7 @@ if (!fs.existsSync('post')) fs.mkdirSync('post');
 
 function removeTags(text) {
     for (const tag of ["iframe"]) {
-        text = text.replace(new RegExp(`<${tag}.*>.*</${tag}>`), '');;
+        text = text.replace(new RegExp(`<${tag}.*>.*</${tag}>`), '');
     }
     return text;
 }
@@ -52,7 +52,7 @@ _categories.sort();
 for (const category of _categories) {
     sortedPosts[category] = [];
     _posts = fs.readdirSync(`post/${category}`);
-    _posts.sort()
+    _posts.sort();
     for (const post of _posts) {
         if (post.startsWith('-')) continue;
         categories[post.substring(0, post.length - 3)] = category;
@@ -67,15 +67,15 @@ var categoryLinks = {};
 for (const c of _categories) {
     categoryLinks[c] = `/posts/${c}/0.html`;
 }
-categoryLinks['0'] = '/posts/0/0.html'
+categoryLinks['0'] = '/posts/0/0.html';
 fs.writeFile('pages/data/category.json', JSON.stringify(categoryLinks), () => { });
 
 // render pages with additional content
 var category;
 for (var i = 0; i < posts.length; i++) {
     post = posts[i];
-    category = categories[post]
-    const content = fs.readFileSync(`post/${category}/${post}.md`, 'utf8')
+    category = categories[post];
+    const content = fs.readFileSync(`post/${category}/${post}.md`, 'utf8');
     const j = sortedPosts[category].indexOf(post);
     const n = j === sortedPosts[category].length - 1 ? " " : sortedPosts[category][j + 1];
     const p = j === 0 ? " " : sortedPosts[category][j - 1];
@@ -156,7 +156,7 @@ for (const category of _categories) {
         url: categoryLinks[category],
         posts: sortedPosts[category].length
     });
-    allposts += categorylist.at(-1).posts
+    allposts += categorylist.at(-1).posts;
 }
 
 function categoryPosts(categoryCode, posts) {
@@ -188,14 +188,14 @@ function categoryPosts(categoryCode, posts) {
             url: `/posts/${categoryCode}/${i}.html`
         };
         after = [];
-        end = i <= pagelength - 5 ? i + 5 : pagelength
+        end = i <= pagelength - 5 ? i + 5 : pagelength;
         for (var j = i + 1; j < end; j++) {
             after.push({
                 number: j,
                 url: `/posts/${categoryCode}/${j}.html`
             });
         }
-        splittedPosts.reverse()
+        splittedPosts.reverse();
         fs.writeFileSync(`pages/posts/${categoryCode}/${i}.html`, pug.renderFile('./pugs/postlist.pug', { selected: categoryCode, allposts: allposts, categorylist: categorylist, posts: splittedPosts, now: now, after: after, before: before, categories: categoryLinks }));
     }
 
@@ -209,13 +209,13 @@ for (const category of _categories) {
 }
 
 
-fs.writeFileSync('pages/search.html', pug.renderFile('./pugs/search.pug', { categorylist: _categories }))
+fs.writeFileSync('pages/search.html', pug.renderFile('./pugs/search.pug', { categorylist: _categories }));
 
 function divide(list, per) {
     if (list.length > per) {
-        return [list.slice(0, per)].concat(divide(list.slice(per), per))
+        return [list.slice(0, per)].concat(divide(list.slice(per), per));
     } else {
-        return [list]
+        return [list];
     }
 }
 
@@ -238,8 +238,7 @@ for (const page of pages) {
 }
 
 if (process.argv.length <= 2) return;
-var exec = require('child_process').exec,
-    child;
+var exec = require('child_process').exec, child;
 
 child = exec('node liveTest.js',
     function (error, stdout, stderr) {

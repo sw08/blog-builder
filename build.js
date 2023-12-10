@@ -125,7 +125,7 @@ for (var i = 0; i < posts.length; i++) {
 const recentPosts = [];
 var preview, date;
 const length = 300;
-for (const post of posts.length < 3 ? posts : posts.slice(3)) {
+for (const post of posts.length < 3 ? posts : posts.slice(0, 3)) {
     md.render(fs.readFileSync(`post/${categories[post]}/${post}.md`, 'utf8'));
     preview = removeTags(md.plainText.replace('\n', ' '));
     date = post.slice(0, 6);

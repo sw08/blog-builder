@@ -5,8 +5,10 @@ on:
     branches: [test_actions]
 
 jobs:
+  permissions: write-all
   build:
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v3

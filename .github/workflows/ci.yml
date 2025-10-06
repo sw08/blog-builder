@@ -13,9 +13,9 @@ jobs:
         with:
           node-version: 16.14.2
           cache: npm
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-python@v3
         with:
-          node-version: 3.x
+          python-version: 3.x
       - run: npm ci
       - run: node build.js
       - run: python upload.py

@@ -1,8 +1,16 @@
 name: CI
 
+
 on:
   push:
     branches: [test_actions]
+  workflow_dispatch:  
+
+  
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   permissions: write-all
